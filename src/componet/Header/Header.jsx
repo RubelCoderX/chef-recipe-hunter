@@ -1,13 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {  HiMenu, } from "react-icons/hi"
+import { AuthContext } from '../providers/AuthProviders';
+import { FaUserCircle } from 'react-icons/fa';
 
 
 const Header = () => {
-  
+  const{user,logOut} = useContext(AuthContext)
   const [isMenuOpen , setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
+  const handleOut = () =>{
+    logOut()
+    .then()
+    .catch(error =>{
+      console.log(error)
+    })
+  }
   // toggle menuBtn
   const toggleMenu = () =>{
     setIsMenuOpen(!isMenuOpen);
@@ -32,11 +41,19 @@ const Header = () => {
               <Link to="/blog" className='text-2xl cursor-pointer px-8 hover:text-gray-400'>Blog</Link>
               <Link to="/about" className='text-2xl cursor-pointer  hover:text-gray-400'>About Us</Link>
             </div>
+           
             <div className='lg:block hidden'>
+              {
+                user && <FaUserCircle></FaUserCircle>
+              }
              
-                <Link to='/login'>
-                <button className='bg-transparent py-3 px-6 text-2xl text-primary border-primary border rounded hover:bg-primary transition-all duration-300 hover:text-white'>Login</button>
-                </Link>
+                { user ?
+                  <button onClick={handleOut} className='bg-transparent py-3 px-6 text-2xl text-primary border-primary border rounded hover:bg-primary transition-all duration-300 hover:text-white'>LogOut</button> :
+                  <Link to='/login'>
+                  <button className='bg-transparent py-3 px-6 text-2xl text-primary border-primary border rounded hover:bg-primary transition-all duration-300 hover:text-white'>Login</button>
+                  </Link>
+
+                }
               
             </div>
             <button onClick={toggleMenu} className='lg:hidden text-3xl'>
