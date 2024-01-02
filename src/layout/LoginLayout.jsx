@@ -5,7 +5,7 @@ import Home from '../componet/Banner/Banner';
 import FamousChef from '../componet/FamousChef/FamousChef';
 import { Outlet } from 'react-router-dom';
 
-const Main = () => {
+const LoginLayout = () => {
     return (
         <div>
             <div>
@@ -18,4 +18,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default LoginLayout;

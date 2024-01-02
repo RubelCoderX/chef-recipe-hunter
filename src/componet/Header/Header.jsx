@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  HiMenu } from "react-icons/hi"
+import {  HiMenu, } from "react-icons/hi"
+
 
 const Header = () => {
+  
   const [isMenuOpen , setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -31,7 +33,11 @@ const Header = () => {
               <Link to="/about" className='text-2xl cursor-pointer  hover:text-gray-400'>About Us</Link>
             </div>
             <div className='lg:block hidden'>
-              <button className='bg-transparent py-3 px-6 text-2xl text-primary border-primary border rounded hover:bg-primary transition-all duration-300 hover:text-white'>Login</button>
+             
+                <Link to='/login'>
+                <button className='bg-transparent py-3 px-6 text-2xl text-primary border-primary border rounded hover:bg-primary transition-all duration-300 hover:text-white'>Login</button>
+                </Link>
+              
             </div>
             <button onClick={toggleMenu} className='lg:hidden text-3xl'>
               <HiMenu></HiMenu>
